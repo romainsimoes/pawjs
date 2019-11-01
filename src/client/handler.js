@@ -15,6 +15,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import { generateMeta } from '../utils/seo';
 import possibleStandardNames from '../utils/reactPossibleStandardNames';
 import PreloadDataManager from '../utils/preloadDataManager';
+import { ConnectedRouter } from 'connected-react-router';
 
 const possibleHtmlNames = _.invert(possibleStandardNames);
 const getPossibleHtmlName = key => possibleHtmlNames[key] || key;
@@ -211,8 +212,10 @@ export default class ClientHandler {
       });
     }
 
-    const AppRouter = (this.options.env.singlePageApplication && this.options.env.hashedRoutes)
-      ? HashRouter : Router;
+    // const AppRouter = (this.options.env.singlePageApplication && this.options.env.hashedRoutes)
+    //   ? HashRouter : Router;
+
+    const AppRouter = ConnectedRouter;
 
     let RouterParams = {
       history: this.history,
@@ -220,6 +223,8 @@ export default class ClientHandler {
     if (this.options.env.singlePageApplication && this.options.env.hashedRoutes) {
       RouterParams = {};
     }
+
+    debugger
 
     const AppRoutes = {
       renderedRoutes: renderRoutes(routes),
@@ -240,6 +245,7 @@ export default class ClientHandler {
     //   setRenderedRoutes: AppRoutes.setRenderedRoutes,
     //   getRenderedRoutes: AppRoutes.getRenderedRoutes,
     // }, () => null);
+    debugger
     const children = (
       <AppRouter basename={env.appRootUrl} {...RouterParams}>
         {AppRoutes.renderedRoutes}
