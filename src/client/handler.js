@@ -224,8 +224,6 @@ export default class ClientHandler {
       RouterParams = {};
     }
 
-    debugger
-
     const AppRoutes = {
       renderedRoutes: renderRoutes(routes),
       setRenderedRoutes: (r) => {
@@ -245,7 +243,6 @@ export default class ClientHandler {
     //   setRenderedRoutes: AppRoutes.setRenderedRoutes,
     //   getRenderedRoutes: AppRoutes.getRenderedRoutes,
     // }, () => null);
-    debugger
     const children = (
       <AppRouter basename={env.appRootUrl} {...RouterParams}>
         {AppRoutes.renderedRoutes}
