@@ -62,6 +62,7 @@ const resolver = {
       pawjs: path.resolve(path.join(process.env.LIB_ROOT)),
       pawProjectClient: projectClientExists ? projectClientPath : emptyClass,
       pawProjectServer: projectServerExists ? projectServerPath : emptyClass,
+      'react-router-dom': path.join(PROJECT_ROOT_DIR_CONST, 'node_modules/react-router-dom/')
     },
     modules: commonResolvers,
     extensions: ['.wasm', '.mjs', '.js', '.json', '.jsx', '.ts', '.tsx'],
