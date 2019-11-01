@@ -56,13 +56,19 @@ if (
 
 const loaderResolver = commonResolvers.slice(0);
 loaderResolver.push(path.join(process.env.LIB_ROOT, 'src', 'webpack', 'loaders'));
+
+const processDir = process.cwd();
+let projectRoot = process.env.PROJECT_ROOT || process.env.PROJECT_ROOT || (processDir + path.sep);
+projectRoot = path.isAbsolute(projectRoot) ? projectRoot : path.resolve(processDir, projectRoot);
+
+
 const resolver = {
   resolve: {
     alias: {
       pawjs: path.resolve(path.join(process.env.LIB_ROOT)),
       pawProjectClient: projectClientExists ? projectClientPath : emptyClass,
       pawProjectServer: projectServerExists ? projectServerPath : emptyClass,
-      'react-router-dom': path.join(PROJECT_ROOT_DIR_CONST, 'node_modules/react-router-dom/')
+      'react-router-dom': path.join(projectRoot, 'node_modules', '@pawjs', 'pawjs', 'node_modules', 'react-router-dom')
     },
     modules: commonResolvers,
     extensions: ['.wasm', '.mjs', '.js', '.json', '.jsx', '.ts', '.tsx'],
